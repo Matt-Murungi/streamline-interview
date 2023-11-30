@@ -57,10 +57,17 @@ dependencies {
     val lifecycle_version = "2.6.2"
     val arch_version = "2.2.0"
 
+    val nav_version = "2.4.2"
+//    navigation
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     // ViewModel utilities for Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+
+
 
 //    Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
@@ -73,6 +80,9 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
 
+
+
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
 
     implementation("androidx.core:core-ktx:1.6.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
