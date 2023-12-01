@@ -1,6 +1,6 @@
 package com.example.myapplication.di
-import com.example.myapplication.AppRepository
-import com.example.myapplication.network.StreamlineAPI
+
+import com.example.myapplication.network.AppAPI
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -19,18 +19,19 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideAPI(): StreamlineAPI {
+    fun provideAPI(): AppAPI {
         val clientProvider: OkHttpClient = provideOkHttpClient()
         val gson = GsonBuilder().setLenient().create()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://universities.hipolabs.com/") // Use the constant BASE_URL here
+            .baseUrl("http://universities.hipolabs.com/")
             .client(clientProvider)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
-        return retrofit.create(StreamlineAPI::class.java)
+        return retrofit.create(AppAPI::class.java)
     }
+
     @Singleton
     @Provides
     fun provideGson(): Gson {
@@ -38,31 +39,14 @@ object AppModule {
     }
 
 
-
-
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            // Add any OkHttpClient configurations if needed
             .build()
     }
 
-    @Singleton
-    @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("YOUR_BASE_URL")
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(okHttpClient)
-            .build()
-    }
 
-    // Optionally, you can provide your Retrofit service interface here as well
-    // For example:
-    // @Singleton
-    // @Provides
-    // fun provideYourApiService(retrofit: Retrofit): YourApiService {
-    //     return retrofit.create(YourApiService::class.java)
-    // }
+
+
 }

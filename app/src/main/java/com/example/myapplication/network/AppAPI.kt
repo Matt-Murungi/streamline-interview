@@ -5,9 +5,8 @@ import retrofit2.Response
 import retrofit2.http.GET
 import javax.inject.Singleton
 
-const val BASE_URL = "http://universities.hipolabs.com/search?country=Uganda"
 @Singleton
-interface StreamlineAPI{
+interface AppAPI{
     @GET("search?country=Uganda")
     suspend fun getUgandanUniversities():Response<UniversityModel>
 }
